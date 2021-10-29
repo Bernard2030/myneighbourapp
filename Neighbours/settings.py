@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'my_neighbours',
     'bootstrap4',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [

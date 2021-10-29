@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -16,4 +17,4 @@ class Neighbourhood(models.Model):
         cls.objects.filter(neighbourhood=neighbourhood).delete()       
 
 class Profile(models.Model):
-    
+    image = CloudinaryField('image')

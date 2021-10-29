@@ -1,5 +1,5 @@
-## awardsdjango
-Is an application that allows users to  view posted projects, post, rate or review users projects. The user can also search for projects, view projects overal score and also view a profile in the profile page.
+## myneighbourapp
+Is an app that allows a user to sign in to start using it and set their profile including the general location of their neighbourhood and the name. The app allows a user to see businesses and access health and authority facilities.
 ## Author
 Bernard Opiyo
 
@@ -17,7 +17,7 @@ Bernard Opiyo
 Use the following command to install all the requirement applications. pip freeze -r requirements.txt
 
 ## setup
-* Run git clone https://github.com/Bernard2030/awardsdjango or download the zip file from github.
+* Run git clone https://github.com/Bernard2030/myneighbourapp or download the zip file from github.
 
 After extracting the files,
 
@@ -53,12 +53,13 @@ After extracting the files,
 
 user story
 
-* View posted projects and their details
-* Post a project to be rated/reviewed
-* Rate/ review other users' projects
-* Search for projects 
-* View projects overall score
-* View my profile page
+* Sign in with the application to start using.
+* Set up a profile about me and a general location and my neighborhood name.
+* Find a list of different businesses in my neighborhood.
+* Find Contact Information for the health department and Police authorities near my neighborhood.
+* Create Posts that will be visible to everyone in my neighborhood.
+* Change My neighborhood when I decide to move out.
+* Only view details of a single neighborhood.
 
 ## pictorial Discription
 <img src="images/landingpage.png" alt="landing"/>

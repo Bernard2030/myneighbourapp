@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'my_neighbours',
     'bootstrap4',
     'bootstrap3',
+    'tinymce',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% load bootstrap4 %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 top-div"></div>
+    </div>
+    <div class="text-center">
+        <a href="{% url '' %}">
+            <button class="btn btn-inline-primary">Create a post</button>
+        </a>
+    </div>
+    <div class="row">
+        {% for thepost in my_post %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <a href="#">
+                    <h5 class="card-title">{{thepost.title}}</h5>
+                </a>
+                <a href="#">
+                    <h6 class="card-subtitle mb-2 text-muted">{{thepost.username}}</h6> 
+                </a>
+             
+              
+              <p class="card-text">{{thepost.post|truncatechars:150 | safe}}</p>
+              <a href="#" class="card-link">Continue reading</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
+          {% endfor %}
+    </div>
+</div>
+{% endblock %}

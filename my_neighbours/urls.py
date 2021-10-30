@@ -12,4 +12,7 @@ urlpatterns = [
     path('see-post',views.see_post, name='see-post'),
     path('new-business',views.new_business, name='new-business'),
     path('business',views.businesses, name='business'),
+    path('search/',views.search_results, name='search_results'),
+    path('health',views.health, name='health'),
+    path('authorities',views.authorities, name='authorities'),
 ]

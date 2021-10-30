@@ -3,7 +3,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 
-from my_neighbours.forms import CommentsForm, ProfileForm
+from my_neighbours.forms import CommentsForm, PostForm, ProfileForm
 
 
 from .models import Comments, Profile,Post,Health,User
@@ -107,7 +107,33 @@ def see_post(request,id):
 
     else:
         form = CommentsForm()
-    return render(request,'see-post.html',{"my_post":my_post,"form":form,"comments":comments})                           
+    return render(request,'see-post.html',{"my_post":my_post,"form":form,"comments":comments}) 
+
+
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+    current_user=request.user
+    profile = Profile.objects.get(username=current_user)
+
+
+    if request.method=="POST":
+        form = PostForm(request.POST,request.FILES)
+        if form.is_valid():
+            post1 = form.save(commit=False)
+            post1.username = current_user
+            post1.neighbourhood = profile.neighbourhood
+            post1.profile_pic =profile.profile_pic
+            post1.save()
+
+        return HttpResponseRedirect('/my_post')
+
+    else:
+        form = PostForm()
+
+    return render(request,'my_post1.html',{"form":form})                 
+
+
+
 
 
 

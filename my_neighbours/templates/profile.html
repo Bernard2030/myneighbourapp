@@ -15,7 +15,7 @@
                 <div class="panel-body">
                     <div class="text-center">
                         <h3>Create a profile</h3>
-                        <form action="{% url 'create-profile%}" method="post" enctype="multipart/form-data">
+                        <form action="{% url 'create-profile' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             {% bootstrap_form form %}
                             <div class="form-group">

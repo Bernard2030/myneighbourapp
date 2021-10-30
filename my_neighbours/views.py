@@ -49,7 +49,7 @@ def create_profile(request):
         return HttpResponseRedirect('/')
     else:
         form = ProfileForm()
-        return render(request,'profile_form.html',{"form":form})                 
+        return render(request,'profile.html',{"form":form})                 
 
  
 

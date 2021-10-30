@@ -1,12 +1,13 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import request
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 
-from my_neighbours.forms import CommentsForm, PostForm, ProfileForm
+from my_neighbours.forms import BusinessForm, CommentsForm, PostForm, ProfileForm
 
 
-from .models import Comments, Profile,Post,Health,User
+from .models import Comments, Profile,Post,Health,User,Business,Authorities
 
 
 
@@ -130,7 +131,92 @@ def new_post(request):
     else:
         form = PostForm()
 
-    return render(request,'my_post1.html',{"form":form})                 
+    return render(request,'my_post1.html',{"form":form})
+
+
+
+@login_required(login_url='/accounts/login/')
+def businesses(request):
+    current_user=request.user
+    profile = Profile.objects.get(username=current_user)
+    businesses = Business.objects.filter(neighbourhood=profile.neighbourhood)
+
+
+    return render(request,'businesses.html',{"businesses":businesses}) 
+
+
+
+@login_required(login_url='/accounts/login/')
+def new_business(request):
+    current_user = request.user
+    profile = Profile.objects.get(username=current_user)
+
+
+    if request.method=="POST":
+        form = BusinessForm(request.POST,request.FILES)
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.owner = current_user
+            business.neighbourhood = profile.neighbourhood
+            business.save()
+
+        return HttpResponseRedirect('/businesses')
+
+    else:
+        form = BusinessForm()
+
+    return render(request,'business_form.html',{"form":form}) 
+
+@login_required(login_url='/accounts/login/')
+def authorities(request):
+    current_user = request.user
+    profile = Profile.objects.get(username=current_user)
+    authorities = Authorities.objects.filter(neighbourhood=profile.neighbourhood)
+
+    return render(request, 'authorities.html',{"authorities":authorities})
+
+
+
+@login_required(login_url='/accounts/login/')
+def health(request):
+    current_user = request.user
+    profile = Profile.objects.get(username=current_user)
+    healthservices = Health.objects.filter(neighbourhood=profile.neighbourhood)
+
+
+    return render(request, 'health.html',{"healthservices":healthservices})
+
+
+
+@login_required(login_url='/accounts/login/')
+def search_results(request):
+    current_user = request.user
+    profile = Profile.objects.get(username=current_user)
+
+
+    if 'business' in request.GET and request.GET["business"]:
+        search_term = request.GET.get("business")
+        searched_businesses = Business.search_business(search_term)
+        message=f'{search_term}'
+
+        print(searched_businesses)
+
+    else:
+        message="You haven't searched for any term"
+
+        return render(request,'search.html',{"message":message})        
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

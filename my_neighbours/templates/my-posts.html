@@ -10,19 +10,19 @@
         </a>
     </div>
     <div class="row">
-        {% for thepost in my_post %}
+        {% for post in posts %}
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <a href="#">
-                    <h5 class="card-title">{{thepost.title}}</h5>
+                <a href="/see-post/{{post.id}}">
+                    <h5 class="card-title">{{post.title}}</h5>
                 </a>
-                <a href="#">
-                    <h6 class="card-subtitle mb-2 text-muted">{{thepost.username}}</h6> 
+                <a href="/user/{{post.username}}">
+                    <h6 class="card-subtitle mb-2 text-muted">{{post.username}}</h6> 
                 </a>
              
               
-              <p class="card-text">{{thepost.post|truncatechars:150 | safe}}</p>
-              <a href="#" class="card-link">Continue reading</a>
+              <p class="card-text">{{post.post|truncatechars:150 | safe}}</p>
+              <a href="/see-post/{{post.id}}" class="card-link">Continue reading</a>
               <a href="#" class="card-link">Another link</a>
             </div>
           </div>

@@ -10,4 +10,5 @@ urlpatterns = [
     path('posts/',views.my_post, name='posts'),
     path('new-post',views.new_post, name='new-post'), 
     path('see-post',views.see_post, name='see-post'),
+    path('business',views.businesses, name='business'),
 ]

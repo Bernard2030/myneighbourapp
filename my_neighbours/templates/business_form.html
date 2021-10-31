@@ -1,24 +1,22 @@
 {% extends 'base.html' %} {% load bootstrap4 %}
 {% block content %}
+
 <div class="container">
     <div class="row">
-        <!-- Empty -->
-        <div class="col-md-4">
+        <div class="col-md-4 contact-secion">
 
         </div>
         <div class="col-md-4 form-section">
-            {{form.media}}
-            {% if form.errors %}
-            <p>Enter correct value</p>
-            {% endif %}
-            <div class="panel panel-default">
+            
+            <div class="panel">
                 <div class="panel-body">
                     <div class="text-center">
-                        <form action="{% url 'new-business'%}" method="post" enctype="multipart/form-data">
+                        <h3>New Business </h3>
+                        <form action="{% url 'new-business' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                            {% boostrap_form form %}
+                            {% bootstrap_form form %}
                             <div class="form-group">
-                                <input type="submit" class="btn btn-outline-primary" value="post">
+                                <input type="submit" value="post" class="btn btn-inline-primary login-button">
                             </div>
                             <input type="hidden" name="next" value="/">
                         </form>
@@ -26,8 +24,8 @@
                 </div>
             </div>
         </div>
-        <!-- Empty -->
+        
         <div class="col-md-4"></div>
     </div>
 </div>
-{% endblock  %}
+{% endblock %}

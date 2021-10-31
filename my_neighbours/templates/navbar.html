@@ -1,42 +1,86 @@
-<style>
-    li {
-        list-style-type: none;
-    }
-</style>
-<nav class="navbar navbar-default navigation-clean ">
-    <div class="dropdown-content" id="navbarSupportedContent">
-        <a class="navbar-brand" href="/" style="font-family: 'Cinzel', serif;">Neighbourhood</a>
-        <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_results'%}" style="margin-top:10px;">
-            <input class="form-control mr-sm-2" type="search" aria-label="Search" name="blog">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Busines </button>
-        </form>
-        <ul class="navbar-right nav navbar-nav" style="display:inline-block;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-            {% if user.is_superuser %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    li{
+      list-style-type: none;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse" style="background-color: antiquewhite;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Neighbourhood</a>
+    </div>
+    {% if user.is_superuser %}
             <li class="nav-item">
                 <a class="nav-link" href="/admin">Admin</a>
-            </li>
+            </li><br>
             {% endif %}
+    <!--The search form above-->
+    <div class="col-sm-6 col-md-6">
+      {% if user.is_authenticated %}
+      <ul>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Links
+                    <span class="caret"></span>
+                </a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="{% url 'my-profile' %}">profile</a>
+              </li>
+              <li>
+                <a href="{% url 'profile_update'%}">Edit Profile</a>
+              </li>
+              <li>
+                <a href="{% url 'posts'%}">Post</a>
+              </li>
+              <li>
+                <a href="{% url 'health'%}">Health</a>
+                <li>
+                    <a href="{% url 'authorities'%}">Authorities</a>
+                  </li>
+                 
+              </li>
+            <li>
+              <a href="/logout">Logout</a>
+            </li>
+            <div class="col-md-4">
+              <ul style="padding-right: 15px;">
+          </div>
+          </ul>
+        </li>
+      </ul>
+      {% else %}
+      <li>
+        <a class='btn btn-default' href="/accounts/login">Login</a>
+      </li>
 
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'my-profile' %}"style="margin-top:-30px; font-family: 'Cinzel', serif;">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="" style="margin-top:-30px; font-family: 'Cinzel', serif;">Edit Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout" style="margin-top:-30px; font-family: 'Cinzel', serif;">Logout</a>
-            </li>
-
-            {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="/accounts/login" style="margin-top:-30px; font-family: 'Cinzel', serif;">Sign In</a>
-            </li>
-            {% endif %}
-        </ul>
+      {% endif %}
     </div>
 
-</nav>
+      <!-- Adding a search form  -->
+      <form class="navbar-form" role="search"  action="{% url 'search_results' %}">
 
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search" name="#">
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit">Search</button>
+          </div>
+        </div>
+
+      </form>
+      <!-- search form end  -->
+   </div>
+</nav>
+</body>
+</html>   
 

@@ -1,6 +1,31 @@
 {% extends 'base.html'%} {% load bootstrap4 %}
 {% block content%}
-<h1 class="text-center">Welcome to Neighbourhood</h1>
-<a href="">Health</a><br>
-<a href="">Authorities</a>
+<h1 class="text-center"><span style="color: darkslategray;">Welcome</span><span style="color: goldenrod;">to Neighbourhood</span></h1>
+
+<div class="container">
+  <div class="row">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col">
+        <div class="card">
+          <img src="https://www.healthcareitnews.com/sites/hitn/files/Global%20healthcare%20%281%29.jpg" class="card-img-top" alt="Health image">
+          <div class="card-body">
+           <a href="{% url 'health'%}"> <h5 class="card-title">Health</h5>
+          </a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img style="height: 300px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYwG1pNiovLrGiKbHL5cft3gi4G8q6NDCvb82Yid4mmMbvhciQWjdfq7m28dj4AhnujSU&usqp=CAU" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'authorities'%}">Authorities</a></h5>
+            
+          </div>
+        </div>
+      </div>
+    
+     
+    </div>
+  </div>
+</div>
 {% endblock%}

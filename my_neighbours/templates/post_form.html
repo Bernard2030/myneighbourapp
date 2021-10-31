@@ -7,14 +7,12 @@
 
         </div>
         <div class="col-md-4 form-section">
-            {{form.media}}
-            {% if form.errors %}
-            <p>Enter correct value</p>
-            {% endif %}
+            
+            
             <div class="panel">
                 <div class="panel-body">
                     <div class="text-center">
-                        <h3>Create a profile</h3>
+                        <h3>Post</h3>
                         <form action="{% url 'new-post' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             {% bootstrap_form form %}
@@ -31,4 +29,11 @@
         <div class="col-md-4"></div>
     </div>
 </div>
+<style>
+    body{
+      background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs06LiVoCDy7hsj8gJ_RglHOuzMJufINE1cuTj7QzUt5Et3uYcJXPAsO1w4pM4QI24gJ8&usqp=CAU)no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
 {% endblock %}

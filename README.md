@@ -62,11 +62,11 @@ user story
 * Only view details of a single neighborhood.
 
 ## pictorial Discription
-<img src="images/landingpage.png" alt="landing"/>
-<img src="images/singleimage.png" alt="singlepage"/>
-<img src="images/profile.png" alt="profile"/>
-<img src="images/restapi.png" alt="restapi"/>
-<img src="images/comments.png" alt="comments"/>
+<img src="images/home.png" alt="landing"/>
+<img src="images/createprofile.png" alt="singlepage"/>
+<img src="images/post.png" alt="profile"/>
+<img src="images/profile2.png" alt="restapi"/>
+
 
 	
 	

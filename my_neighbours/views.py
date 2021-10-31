@@ -83,7 +83,7 @@ def my_post(request):
     posts = Post.objects.filter(neighbourhood=profile.neighbourhood)
 
 
-    return render(request,'my-posts.html',{'posts':posts}) 
+    return render(request,'post.html',{'posts':posts}) 
 
 
 
@@ -120,18 +120,18 @@ def new_post(request):
     if request.method=="POST":
         form = PostForm(request.POST,request.FILES)
         if form.is_valid():
-            post1 = form.save(commit=False)
-            post1.username = current_user
-            post1.neighbourhood = profile.neighbourhood
-            post1.profile_pic =profile.profile_pic
-            post1.save()
+            post = form.save(commit=False)
+            post.username = current_user
+            post.neighbourhood = profile.neighbourhood
+            post.profile_pic =profile.profile_pic
+            post.save()
 
-        return HttpResponseRedirect('/my_post')
+        return HttpResponseRedirect('/post')
 
     else:
         form = PostForm()
 
-    return render(request,'my_post1.html',{"form":form})
+    return render(request,'post_form.html',{'form':form})
 
 
 
@@ -169,11 +169,11 @@ def new_business(request):
 
 @login_required(login_url='/accounts/login/')
 def authorities(request):
-    current_user = request.user
-    profile = Profile.objects.get(username=current_user)
+    cureent_user=request.user
+    profile=Profile.objects.get(username=cureent_user)
     authorities = Authorities.objects.filter(neighbourhood=profile.neighbourhood)
 
-    return render(request, 'authorities.html',{"authorities":authorities})
+    return render(request, 'authorities.html',{'authorities':authorities})
 
 
 
@@ -202,7 +202,7 @@ def search_results(request):
         print(searched_businesses)
 
     else:
-        message="You haven't searched for any term"
+        message="No term searched yet"
 
         return render(request,'search.html',{"message":message})        
 

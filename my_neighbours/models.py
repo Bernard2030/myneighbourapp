@@ -97,7 +97,7 @@ class Authorities(models.Model):
     name = models.CharField(max_length=120)
     email = models.EmailField()
     address = models.CharField(max_length=120) 
-    contact = models.ImageField()
+    contact = models.IntegerField()
 
     def __str__(self):
         return self.name       

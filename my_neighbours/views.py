@@ -1,12 +1,8 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import request
-from django.http.response import HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-
 from my_neighbours.forms import BusinessForm, CommentsForm, PostForm, ProfileForm
-
-
 from .models import Comments, Profile,Post,Health,User,Business,Authorities
 
 
@@ -169,8 +165,8 @@ def new_business(request):
 
 @login_required(login_url='/accounts/login/')
 def authorities(request):
-    cureent_user=request.user
-    profile=Profile.objects.get(username=cureent_user)
+    current_user=request.user
+    profile = Profile.objects.get(username=current_user)
     authorities = Authorities.objects.filter(neighbourhood=profile.neighbourhood)
 
     return render(request, 'authorities.html',{'authorities':authorities})

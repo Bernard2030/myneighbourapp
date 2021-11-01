@@ -1,13 +1,33 @@
-{% extends 'base.html'%}{% load bootstrap4 %}
+{% extends 'base.html'%} {% load bootstrap4 %}
 {% block content %}
-<div class="container">
-    <h2>Authorities</h2>
+<div class="container" >
+    {% for law in authorities %}
     <div class="row">
-        {% for law in authorities %}
-        <p>Name:{{law.name}}</p>
-        <p>Email:{{law.email}}</p>
-        <p>Address:{{law.address}}</p>
-        {% endfor%}
+       
+       
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+              <div class="card">
+              
+                <div class="card-body">
+                  <h5 class="card-title">Name: {{law.name}}</h5>
+                  <p class="card-text">Email: {{law.email}}</p>
+                  <p class="card-text">Address: {{law.address}}</p>
+                  <p class="card-text">Contact: {{law.contact}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+       
     </div>
+    {% endfor %}
 </div>
-{% endblock %}
+<style>
+    body{
+      background: url(https://www.throughlinegroup.com/wp-content/uploads/2019/11/iStock-1082458272-1024x683.jpg)no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
+
+{% endblock  %}

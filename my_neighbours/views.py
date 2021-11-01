@@ -23,14 +23,15 @@ def Welcome(request):
 @login_required(login_url='/accounts/login/')
 def my_profile(request):
     current_user=request.user
-    profile=Profile.objects.get(username=current_user)
+    profile=Profile.objects.filter( user_id=current_user.id).first()
+       
     return render(request,'user_profile.html',{'profile':profile})
 
 
 @login_required(login_url='/accounts/login/')
-def user_profile(request,username):
-    user = User.objects.get(username=username)
-    profile = Profile.objects.get(username=user)
+def user_profile(request):
+    current_user=request.user
+    profile=Profile.objects.filter( user_id=current_user.id).first()
 
 
 
@@ -52,18 +53,18 @@ def create_profile(request):
 @login_required(login_url='/accounts/login/')
 def updateP(request):
     current_user = request.user
-    if request.method=="POSt":
-        instance = Profile.objects.get(username=current_user)
+    if request.method=="POST":
+        instance = Profile.objects.filter( user_id=current_user.id).first()
         form = ProfileForm(request.POST,request.FILES,instance=instance)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.username = current_user
             profile.save()
 
-        return redirect('Index')
+        return redirect('/')
 
-    elif Profile.objects.get(username=current_user):
-        profile = Profile.objects.get(username=current_user)
+    elif Profile.objects.filter( user_id=current_user.id).exists():
+        profile = Profile.objects.filter( user_id=current_user.id).first()
         form = ProfileForm(instance=profile)
     else:
         form = ProfileForm()
@@ -75,7 +76,7 @@ def updateP(request):
 @login_required(login_url='/accounts/login/')
 def my_post(request):
     current_user = request.user
-    profile = Profile.objects.get(username=current_user)
+    profile = Profile.objects.filter( user_id=current_user.id).first()
     posts = Post.objects.filter(neighbourhood=profile.neighbourhood)
 
 
@@ -110,7 +111,7 @@ def see_post(request,id):
 @login_required(login_url='/accounts/login/')
 def new_post(request):
     current_user=request.user
-    profile = Profile.objects.get(username=current_user)
+    profile = Profile.objects.filter( user_id=current_user.id).first()
 
 
     if request.method=="POST":
@@ -134,7 +135,7 @@ def new_post(request):
 @login_required(login_url='/accounts/login/')
 def businesses(request):
     current_user=request.user
-    profile = Profile.objects.get(username=current_user)
+    profile = Profile.objects.filter( user_id=current_user.id).first()
     businesses = Business.objects.filter(neighbourhood=profile.neighbourhood)
 
 
@@ -145,7 +146,7 @@ def businesses(request):
 @login_required(login_url='/accounts/login/')
 def new_business(request):
     current_user = request.user
-    profile = Profile.objects.get(username=current_user)
+    profile = Profile.objects.filter( user_id=current_user.id).first()
 
 
     if request.method=="POST":
@@ -166,7 +167,7 @@ def new_business(request):
 @login_required(login_url='/accounts/login/')
 def authorities(request):
     current_user=request.user
-    profile = Profile.objects.get(username=current_user)
+    profile = Profile.objects.filter( user_id=current_user.id).first()
     authorities = Authorities.objects.filter(neighbourhood=profile.neighbourhood)
 
     return render(request, 'authorities.html',{'authorities':authorities})
@@ -176,7 +177,7 @@ def authorities(request):
 @login_required(login_url='/accounts/login/')
 def health(request):
     current_user = request.user
-    profile = Profile.objects.get(username=current_user)
+    profile = Profile.objects.filter( user_id=current_user.id).first()
     healthservices = Health.objects.filter(neighbourhood=profile.neighbourhood)
 
 
@@ -187,7 +188,7 @@ def health(request):
 @login_required(login_url='/accounts/login/')
 def search_results(request):
     current_user = request.user
-    profile = Profile.objects.get(username=current_user)
+    profile = Profile.objects.filter( user_id=current_user.id).first()
 
 
     if 'business' in request.GET and request.GET["business"]:

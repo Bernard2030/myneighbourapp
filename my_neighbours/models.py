@@ -23,7 +23,7 @@ class Profile(models.Model):
     profile_pic = CloudinaryField('image')
     neighbourhood = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
     description = HTMLField()
-    username = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     name = models.CharField(max_length=120)
     email = models.EmailField()
 

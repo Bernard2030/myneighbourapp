@@ -157,7 +157,7 @@ def new_business(request):
             business.neighbourhood = profile.neighbourhood
             business.save()
 
-        return HttpResponseRedirect('/businesses')
+        return HttpResponseRedirect('')
 
     else:
         form = BusinessForm()

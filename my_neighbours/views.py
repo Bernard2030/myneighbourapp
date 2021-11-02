@@ -15,7 +15,7 @@ def Welcome(request):
         if not request.user.is_authenticated:
             return redirect('/account/login/')
         current_user=request.user
-        # profile =Profile.objects.get(username=current_user)
+        profile =Profile.objects.filter( user_id=current_user.id).first()
     except ObjectDoesNotExist:
         return redirect('create_profile')
     return render(request, 'index.html')

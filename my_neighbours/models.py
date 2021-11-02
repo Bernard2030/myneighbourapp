@@ -34,7 +34,7 @@ class Post(models.Model):
     image = CloudinaryField('image')
     title = models.CharField(max_length=100)
     post = HTMLField()
-    username = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     neighbourhood = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
     profile_pic = CloudinaryField('image')
@@ -44,7 +44,7 @@ class Post(models.Model):
 
 class Comments(models.Model):
     comments = models.CharField(max_length=255)
-    username = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     post = models.ForeignKey(Post,on_delete=models.CASCADE)
 
 
